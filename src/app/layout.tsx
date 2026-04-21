@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Stack_Sans_Text, Inter } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import QueryProvider from "@/providers/QueryProvider";
 
-const stackSans = Stack_Sans_Text({
+const jakarta = Plus_Jakarta_Sans({
 	subsets: ["latin"],
-	variable: "--font-stack-sans",
+	variable: "--font-sans",
+	display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 	description: "Community-driven environmental solutions",
 };
 
-export default function RootLayout({
+export default function AppLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
@@ -22,11 +23,11 @@ export default function RootLayout({
 	return (
 		<html
 			lang="en"
-			className={cn(stackSans.variable, "font-sans")}
+			className={cn(jakarta.variable, "font-sans antialiased")}
 		>
-			<QueryProvider>
-				<body>{children}</body>
-			</QueryProvider>
+			<body className="flex min-h-screen flex-col bg-background text-foreground">
+				<QueryProvider>{children}</QueryProvider>
+			</body>
 		</html>
 	);
 }
