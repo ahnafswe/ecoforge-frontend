@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Stack_Sans_Text, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import QueryProvider from "@/providers/QueryProvider";
 
 const stackSans = Stack_Sans_Text({
 	subsets: ["latin"],
@@ -23,7 +24,9 @@ export default function RootLayout({
 			lang="en"
 			className={cn(stackSans.variable, "font-sans")}
 		>
-			<body>{children}</body>
+			<QueryProvider>
+				<body>{children}</body>
+			</QueryProvider>
 		</html>
 	);
 }
