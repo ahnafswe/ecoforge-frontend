@@ -112,7 +112,7 @@ export function TrendingIdeas() {
 												{idea.author.name.charAt(0)}
 											</div>
 										)}
-										<span className="text-sm font-medium text-foreground/80">
+										<span className="text-sm font-medium text-foreground/90">
 											{idea.author.name}
 										</span>
 									</div>
