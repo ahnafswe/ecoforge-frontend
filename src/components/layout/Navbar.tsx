@@ -22,7 +22,7 @@ const NAV_LINKS = [
 	{ name: "Blog", href: "/blog" },
 ];
 
-export default function Navbar() {
+export function Navbar() {
 	const pathname = usePathname();
 
 	const [isAuthenticated] = useState(false);

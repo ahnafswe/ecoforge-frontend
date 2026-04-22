@@ -2,14 +2,14 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { TbLogin2, TbMessages } from "react-icons/tb";
 
-export default function Hero() {
+export function Hero() {
 	return (
-		<section className="relative overflow-hidden px-4 pb-16 md:pb-24 lg:pb-32">
+		<section className="relative overflow-hidden px-4 pb-16 md:pb-24 lg:pb-40">
 			<div className="container mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2">
 				<div className="flex flex-col items-start justify-center text-left">
 					<h1 className="text-5xl font-extrabold tracking-tight lg:text-6xl">
 						Build the future of <br className="hidden md:block" />
-						<span className="text-primary">sustainability</span> together.
+						<span className="text-primary">sustainability</span> together
 					</h1>
 
 					<p className="mt-6 max-w-lg text-lg text-foreground/70 md:text-xl">

@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getCategories } from "@/services/categories";
 import * as TbIcons from "react-icons/tb";
 
-export default function Categories() {
+export function Categories() {
 	const {
 		data: categories,
 		isLoading,
@@ -15,13 +15,13 @@ export default function Categories() {
 	});
 
 	return (
-		<section className="relative">
+		<section className="relative pb-16 md:pb-24 lg:pb-40">
 			<div className="container mx-auto max-w-7xl">
 				<div className="flex flex-col gap-16 lg:flex-row lg:items-start lg:gap-12">
 					<div className="lg:sticky lg:top-32 lg:w-1/3">
 						<h2 className="text-4xl font-extrabold tracking-tight md:text-5xl">
 							Find your <br className="hidden lg:block" />
-							<span className="text-primary">impact zone.</span>
+							<span className="text-primary">impact zone</span>
 						</h2>
 						<p className="mt-4 text-lg text-foreground/70">
 							Whether you're developing renewable grid tech or grassroots
@@ -41,7 +41,7 @@ export default function Categories() {
 							Array.from({ length: 11 }).map((_, i) => (
 								<div
 									key={i}
-									className={`m-2 h-24 animate-pulse rounded-xl bg-white/5 ${i % 5 === 0 ? "md:col-span-2" : ""}`}
+									className={`m-2 h-24 animate-pulse rounded-xl bg-white/3 ${i % 5 === 0 ? "md:col-span-2" : ""}`}
 								/>
 							))}
 
