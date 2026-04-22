@@ -4,7 +4,7 @@ import { TbLogin2, TbMessages } from "react-icons/tb";
 
 export function Hero() {
 	return (
-		<section className="relative overflow-hidden px-4 pb-16 md:pb-24 lg:pb-40">
+		<section className="relative overflow-hidden px-4 pb-16">
 			<div className="container mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2">
 				<div className="flex flex-col items-start justify-center text-left">
 					<h1 className="text-5xl font-extrabold tracking-tight lg:text-6xl">
