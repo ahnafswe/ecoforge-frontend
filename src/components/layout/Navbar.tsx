@@ -34,7 +34,7 @@ export default function Navbar() {
 
 	return (
 		<header className="sticky top-0 z-50 w-full bg-zinc-900/15 border-b border-b-zinc-400/5 backdrop-blur-md">
-			<div className="container mx-auto flex h-16 items-center justify-between max-md:px-4">
+			<div className="container mx-auto max-w-7xl flex h-16 items-center justify-between max-md:px-4">
 				<div className="flex items-center gap-2">
 					<Link
 						href="/"
@@ -129,7 +129,7 @@ export default function Navbar() {
 								tabIndex={-1}
 							>
 								<Button
-									variant="ghost"
+									variant="outline"
 									className="rounded-sm text-foreground/80 hover:text-foreground"
 								>
 									Login
