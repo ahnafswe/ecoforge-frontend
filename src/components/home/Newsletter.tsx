@@ -3,9 +3,9 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "../ui/input";
 
-export default function Newsletter() {
+export function Newsletter() {
 	return (
-		<section className="border-t border-white/5 bg-zinc-900/25 px-4 py-16">
+		<section className="border-t border-white/5 bg-zinc-900/25 px-4 py-16 mb-16 md:mb-24 lg:mb-40">
 			<div className="container mx-auto max-w-xl text-center">
 				<h2 className="text-2xl font-extrabold tracking-tight md:text-4xl">
 					Stay in the loop

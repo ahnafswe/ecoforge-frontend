@@ -1,4 +1,4 @@
-export default function ImpactMetrics() {
+export function ImpactMetrics() {
 	const metrics = [
 		{ value: "100+", label: "Ideas Forged" },
 		{ value: "4k+", label: "Votes Casted" },
