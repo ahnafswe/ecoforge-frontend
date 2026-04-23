@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { TbMail, TbArrowRight, TbAlertCircle } from "react-icons/tb";
 
-export default function VerifyEmailContent() {
+export function VerifyEmailContent() {
 	const searchParams = useSearchParams();
 	const status = searchParams.get("status");
 

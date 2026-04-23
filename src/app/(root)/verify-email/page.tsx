@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { Metadata } from "next";
-import VerifyEmailContent from "@/components/auth/VerifyEmailContent";
+import { VerifyEmailContent } from "@/components/auth/VerifyEmailContent";
 
 export const metadata: Metadata = {
 	title: "Verify Email | EcoForge",

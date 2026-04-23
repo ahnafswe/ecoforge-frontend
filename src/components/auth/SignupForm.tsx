@@ -10,7 +10,7 @@ import { authClient } from "@/lib/authClient";
 import { uploadAvatar } from "@/services/media";
 import { TbUpload, TbAlertCircle } from "react-icons/tb";
 
-export default function SignupForm() {
+export function SignupForm() {
 	const router = useRouter();
 	const [imagePreview, setImagePreview] = useState<string | null>(null);
 	const [imageFile, setImageFile] = useState<File | null>(null);
