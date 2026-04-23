@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaLinkedin } from "react-icons/fa6";
-import { SiGithub, SiX } from "react-icons/si";
+import { SiGithub, SiX, SiYoutube } from "react-icons/si";
 import { TbMailFilled, TbPhoneFilled } from "react-icons/tb";
 
 export function Footer() {
@@ -142,6 +142,14 @@ export function Footer() {
 								className="rounded-full bg-foreground/5 p-2.5 text-foreground/70 hover:bg-primary/10 hover:text-primary transition-all"
 							>
 								<SiX className="size-5" />
+							</a>
+							<a
+								href="https://youtube.com/@mahnaf-dev"
+								target="_blank"
+								rel="noreferrer"
+								className="rounded-full bg-foreground/5 p-2.5 text-foreground/70 hover:bg-primary/10 hover:text-primary transition-all"
+							>
+								<SiYoutube className="size-5" />
 							</a>
 						</div>
 					</div>

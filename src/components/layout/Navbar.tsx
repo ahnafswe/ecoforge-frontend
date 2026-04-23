@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
 	DropdownMenu,
@@ -12,8 +11,11 @@ import {
 	DropdownMenuItem,
 	DropdownMenuSeparator,
 	DropdownMenuLabel,
+	DropdownMenuGroup,
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
+import { authClient } from "@/lib/authClient";
+import { TbUser } from "react-icons/tb";
 
 const NAV_LINKS = [
 	{ name: "Home", href: "/" },
@@ -24,12 +26,17 @@ const NAV_LINKS = [
 
 export function Navbar() {
 	const pathname = usePathname();
+	const router = useRouter();
+	const { data: session } = authClient.useSession();
 
-	const [isAuthenticated] = useState(false);
-
-	const user = {
-		name: "Neo",
-		image: "https://api.dicebear.com/9.x/notionists/svg?seed=Neo",
+	const handleLogout = async () => {
+		await authClient.signOut({
+			fetchOptions: {
+				onSuccess: () => {
+					router.push("/login");
+				},
+			},
+		});
 	};
 
 	return (
@@ -69,16 +76,22 @@ export function Navbar() {
 				</nav>
 
 				<div className="flex items-center justify-end gap-4">
-					{isAuthenticated ? (
+					{session ? (
 						<DropdownMenu>
 							<DropdownMenuTrigger className="outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-full cursor-pointer">
-								<div className="h-9 w-9 overflow-hidden rounded-full border border-black/10 transition-transform hover:scale-105 dark:border-white/10">
-									<img
-										src={user.image}
-										alt={user.name}
-										className="h-full w-full object-cover"
-									/>
-								</div>
+								{session.user.image ? (
+									<div className="size-10 overflow-hidden rounded-full border border-white/10 transition-transform hover:scale-105">
+										<img
+											src={session.user.image}
+											alt={session.user.name}
+											className="h-full w-full object-cover"
+										/>
+									</div>
+								) : (
+									<div className="size-10 overflow-hidden rounded-full border border-white/10 bg-zinc-900/50 transition-transform hover:scale-105 flex items-center justify-center text-foreground/80">
+										<TbUser className="size-5" />
+									</div>
+								)}
 							</DropdownMenuTrigger>
 
 							<DropdownMenuPositioner
@@ -86,16 +99,18 @@ export function Navbar() {
 								sideOffset={8}
 							>
 								<DropdownMenuContent className="w-48">
-									<DropdownMenuLabel className="font-normal">
-										<div className="flex flex-col space-y-1">
-											<p className="text-sm font-medium leading-none">
-												{user.name}
-											</p>
-											<p className="text-xs leading-none text-muted-foreground">
-												member@ecoforge.com
-											</p>
-										</div>
-									</DropdownMenuLabel>
+									<DropdownMenuGroup>
+										<DropdownMenuLabel className="font-normal">
+											<div className="flex flex-col space-y-2">
+												<p className="text-sm font-medium leading-none">
+													{session.user.name}
+												</p>
+												<p className="text-xs leading-none text-muted-foreground">
+													{session.user.email}
+												</p>
+											</div>
+										</DropdownMenuLabel>
+									</DropdownMenuGroup>
 									<DropdownMenuSeparator />
 
 									<Link
@@ -116,7 +131,11 @@ export function Navbar() {
 									</Link>
 
 									<DropdownMenuSeparator />
-									<DropdownMenuItem className="cursor-pointer text-destructive focus:text-destructive data-[variant=destructive]:text-destructive">
+
+									<DropdownMenuItem
+										onClick={handleLogout}
+										className="cursor-pointer text-destructive focus:text-destructive data-[variant=destructive]:text-destructive"
+									>
 										Logout
 									</DropdownMenuItem>
 								</DropdownMenuContent>

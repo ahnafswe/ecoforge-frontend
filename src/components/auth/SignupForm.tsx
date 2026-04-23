@@ -45,6 +45,7 @@ export default function SignupForm() {
 				password: formData.password,
 				name: formData.name,
 				image: avatarUrl,
+				callbackURL: `${window.location.origin}/ideas`,
 			});
 
 			if (authError) throw new Error(authError.message || "Failed to create account.");
@@ -79,8 +80,8 @@ export default function SignupForm() {
 	return (
 		<div className="w-full">
 			{globalError && (
-				<div className="mb-6 flex items-center gap-2 rounded-lg bg-destructive/10 p-3 text-sm font-medium text-destructive">
-					<TbAlertCircle className="h-4 w-4 shrink-0" />
+				<div className="mb-4 -mt-2 flex items-center gap-2 rounded-md bg-destructive/10 p-3 text-sm font-medium text-destructive">
+					<TbAlertCircle className="size-4 shrink-0" />
 					<p>{globalError}</p>
 				</div>
 			)}
