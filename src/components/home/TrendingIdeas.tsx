@@ -90,7 +90,7 @@ export function TrendingIdeas() {
 								</div>
 							</div>
 
-							<div className="bg-white/4 flex flex-1 flex-col px-6 py-5">
+							<div className="bg-zinc-900/25 flex flex-1 flex-col px-6 py-5">
 								<h3 className="mb-3 text-xl font-bold leading-tight transition-colors">
 									{idea.title}
 								</h3>
