@@ -50,6 +50,21 @@ export interface Idea {
 	};
 }
 
+export interface GetIdeasFilters {
+	page?: number;
+	limit?: number;
+	search?: string;
+	categoryId?: string;
+	isPaid?: boolean;
+	sortBy?: "recent" | "top_voted" | "most_commented";
+	minVotes?: number;
+}
+
+export const getIdeas = async (filters: GetIdeasFilters): Promise<Idea[]> => {
+	const { data } = await apiClient.get("/ideas", { params: filters });
+	return data.data;
+};
+
 export const getTrendingIdeas = async (): Promise<Idea[]> => {
 	const { data } = await apiClient.get("/ideas?sortBy=top_voted&limit=3");
 

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function VerifyEmailPage() {
 	return (
-		<div className="flex items-center justify-center px-4 py-12 md:py-20 lg:py-32">
+		<div className="flex items-center justify-center max-lg:px-4 py-12 md:py-20 lg:py-32">
 			<div className="w-full max-w-md rounded-2xl border border-foreground/10 bg-zinc-900/50 p-8 shadow-xl">
 				<Suspense
 					fallback={
