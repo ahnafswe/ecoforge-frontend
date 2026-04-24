@@ -70,3 +70,9 @@ export const getTrendingIdeas = async (): Promise<Idea[]> => {
 
 	return data.data;
 };
+
+export const getIdeaById = async (id: string): Promise<Idea> => {
+	const { data } = await apiClient.get(`/ideas/${id}`);
+
+	return data.data;
+};

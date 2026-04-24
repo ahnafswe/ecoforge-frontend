@@ -158,7 +158,7 @@ export default function IdeasFeed() {
 				</div>
 			) : isError ? (
 				<div className="flex min-h-72 w-full flex-col items-center justify-center text-foreground/50">
-					<p className="text-lg font-medium">Failed to load ideas.</p>
+					<p className="text-lg font-medium">Failed to load ideas</p>
 				</div>
 			) : ideas?.length === 0 ? (
 				<div className="flex min-h-72 w-full flex-col items-center justify-center text-foreground/50">

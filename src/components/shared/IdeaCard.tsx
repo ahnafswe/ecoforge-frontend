@@ -94,7 +94,7 @@ export function IdeaCard({ idea }: { idea: Idea }) {
 						<Button
 							size="sm"
 							variant="outline"
-							className="bg-background rounded-sm px-3 text-[13px]"
+							className="bg-background text-foreground/90 rounded-sm px-3 text-[13px]"
 						>
 							Know More
 						</Button>
