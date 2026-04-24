@@ -1,14 +1,5 @@
 import Link from "next/link";
-import {
-	TbMessageCircle,
-	TbChevronUp,
-	TbCoin,
-	TbPhotoOff,
-	TbArrowBigUpLine,
-	TbMessage,
-	TbArrowBigUp,
-	TbArrowBigDown,
-} from "react-icons/tb";
+import { TbPhotoOff, TbMessage, TbArrowBigUp, TbArrowBigDown } from "react-icons/tb";
 import { Button } from "@/components/ui/button";
 import { Idea } from "@/services/ideas";
 

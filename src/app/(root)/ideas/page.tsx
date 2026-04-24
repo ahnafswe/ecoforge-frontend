@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { IdeaCard } from "@/components/shared/IdeaCard";
 import { Idea, getIdeas } from "@/services/ideas";
 import { getCategories } from "@/services/categories";
 import { Input } from "@/components/ui/input";
-import { TbSearch, TbLoader2 } from "react-icons/tb";
+import { TbSearch, TbLoader2, TbChevronLeft, TbChevronRight } from "react-icons/tb";
 import { Slider } from "@/components/ui/slider";
 
 export default function IdeasFeed() {
@@ -15,6 +15,12 @@ export default function IdeasFeed() {
 	const [isPaidFilter, setIsPaidFilter] = useState<boolean | undefined>();
 	const [sortBy, setSortBy] = useState<"recent" | "top_voted" | "most_commented">("recent");
 	const [minVotes, setMinVotes] = useState(0);
+	const [limit, setLimit] = useState(12);
+	const [page, setPage] = useState(1);
+
+	useEffect(() => {
+		setPage(1);
+	}, [search, category, isPaidFilter, sortBy, minVotes]);
 
 	const { data: categories } = useQuery({
 		queryKey: ["categories"],
@@ -26,7 +32,7 @@ export default function IdeasFeed() {
 		isLoading,
 		isError,
 	} = useQuery<Idea[]>({
-		queryKey: ["ideas", search, category, isPaidFilter, sortBy, minVotes],
+		queryKey: ["ideas", search, category, isPaidFilter, sortBy, minVotes, page, limit],
 		queryFn: () =>
 			getIdeas({
 				search: search || undefined,
@@ -34,6 +40,8 @@ export default function IdeasFeed() {
 				isPaid: isPaidFilter,
 				sortBy,
 				minVotes,
+				limit,
+				page,
 			}),
 	});
 
@@ -165,14 +173,57 @@ export default function IdeasFeed() {
 					<p className="text-lg font-medium">No ideas found matching your filters</p>
 				</div>
 			) : (
-				<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
-					{ideas?.map((idea) => (
-						<IdeaCard
-							key={idea.id}
-							idea={idea}
-						/>
-					))}
-				</div>
+				<>
+					<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+						{ideas?.map((idea) => (
+							<IdeaCard
+								key={idea.id}
+								idea={idea}
+							/>
+						))}
+					</div>
+
+					<div className="mt-10 flex items-center justify-between">
+						<div className="flex flex-col gap-y-2">
+							<label className="text-sm font-medium text-foreground/70">
+								Show Per Page:
+							</label>
+							<select
+								value={limit}
+								onChange={(e) => {
+									setLimit(Number(e.target.value));
+									setPage(1);
+								}}
+								className="w-16 h-8 px-2 rounded-sm border border-foreground/15 bg-[#0d0d0f] text-sm outline-none focus:border-ring focus:ring-2 focus:ring-zinc-700"
+							>
+								<option value={12}>12</option>
+								<option value={24}>24</option>
+								<option value={36}>36</option>
+								<option value={48}>48</option>
+							</select>
+						</div>
+
+						<div className="flex items-center gap-2">
+							<button
+								onClick={() => setPage((p) => Math.max(1, p - 1))}
+								disabled={page === 1}
+								className="flex items-center gap-1 text-foreground/80 transition-colors hover:text-primary disabled:pointer-events-none disabled:opacity-50"
+							>
+								<TbChevronLeft className="size-6" />
+							</button>
+							<span className="bg-zinc-900/50 border border-zinc-800 px-3 py-1 rounded-sm text-sm font-semibold text-foreground/80">
+								{page}
+							</span>
+							<button
+								onClick={() => setPage((p) => p + 1)}
+								disabled={!ideas || ideas.length < limit}
+								className="flex items-center gap-1 text-foreground/80 transition-colors hover:text-primary disabled:pointer-events-none disabled:opacity-50"
+							>
+								<TbChevronRight className="size-6" />
+							</button>
+						</div>
+					</div>
+				</>
 			)}
 		</div>
 	);
