@@ -177,7 +177,7 @@ export function IdeaDetails({ id }: { id: string }) {
 
 			<section className="mt-8 flex flex-col gap-8">
 				<div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-					<div className="flex items-center gap-3 rounded-md border border-zinc-800/75 bg-zinc-900/50 px-3 py-1.5 text-foreground/70">
+					{/* <div className="flex items-center gap-3 rounded-md border border-zinc-800/75 bg-zinc-900/50 px-3 py-1.5 text-foreground/70">
 						<div className="flex items-center gap-1">
 							<button
 								onClick={() =>
@@ -204,7 +204,7 @@ export function IdeaDetails({ id }: { id: string }) {
 								{idea.downvoteCount}
 							</span>
 						</div>
-					</div>
+					</div> */}
 
 					<Button
 						onClick={handleShare}
@@ -226,7 +226,7 @@ export function IdeaDetails({ id }: { id: string }) {
 					</Button>
 				</div>
 
-				<div className="flex flex-col gap-4">
+				{/* <div className="flex flex-col gap-4">
 					<h3 className="text-xl font-bold tracking-tight">
 						Discussion ({idea._count.comments})
 					</h3>
@@ -280,7 +280,7 @@ export function IdeaDetails({ id }: { id: string }) {
 							</div>
 						))}
 					</div>
-				</div>
+				</div> */}
 			</section>
 		</div>
 	);

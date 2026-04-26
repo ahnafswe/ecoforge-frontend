@@ -3,6 +3,7 @@ import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from "ax
 interface BackendErrorResponse {
 	success: boolean;
 	message: string;
+	errors?: object[];
 }
 
 const baseURL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/v1";
@@ -10,9 +11,6 @@ const baseURL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/v1
 export const apiClient = axios.create({
 	baseURL,
 	withCredentials: true,
-	headers: {
-		"Content-Type": "application/json",
-	},
 });
 
 apiClient.interceptors.request.use(
