@@ -45,7 +45,7 @@ export function Navbar() {
 				<div className="flex items-center gap-2">
 					<Link
 						href="/"
-						className="flex items-center gap-1 text-xl font-bold tracking-tight outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
+						className="flex items-center gap-1 text-xl font-bold tracking-tight"
 					>
 						<Image
 							src="/logo.png"
