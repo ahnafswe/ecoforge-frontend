@@ -15,6 +15,7 @@ export interface Idea {
 	rejectionFeedback: string | null;
 	upvoteCount: number;
 	downvoteCount: number;
+	userVote: "UPVOTE" | "DOWNVOTE" | null;
 	isDeleted: boolean;
 	createdAt: Date;
 	updatedAt: Date;

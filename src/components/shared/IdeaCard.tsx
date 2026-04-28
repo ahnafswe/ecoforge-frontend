@@ -22,12 +22,14 @@ export function IdeaCard({ idea }: { idea: Idea }) {
 				{idea.isPaid && (
 					<div className="absolute top-3 right-3">
 						{idea.isPaid && (
-							<img
-								src="/icons/paid-badge.png"
-								alt="Paid Idea"
-								title="Fund Solution"
-								className="h-7 w-auto"
-							/>
+							<div className="p-1.25 rounded-sm bg-background">
+								<img
+									src="/icons/paid-badge.png"
+									alt="Paid Idea"
+									title="Paid Idea"
+									className="h-6 w-auto"
+								/>
+							</div>
 						)}
 					</div>
 				)}

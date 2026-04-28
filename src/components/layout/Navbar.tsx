@@ -80,7 +80,7 @@ export function Navbar() {
 						<DropdownMenu>
 							<DropdownMenuTrigger className="outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-full cursor-pointer">
 								{session.user.image ? (
-									<div className="size-10 overflow-hidden rounded-full border-2 border-primary/50 transition-transform hover:scale-105">
+									<div className="size-10 overflow-hidden rounded-full border-2 border-zinc-800 transition-transform hover:scale-105">
 										<img
 											src={session.user.image}
 											alt={session.user.name}
