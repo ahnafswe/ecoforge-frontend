@@ -8,13 +8,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/authClient";
 import { uploadAvatar } from "@/services/media";
-import { TbUpload, TbAlertCircle } from "react-icons/tb";
+import { TbUpload } from "react-icons/tb";
+import { toast } from "sonner";
 
 export function SignupForm() {
 	const router = useRouter();
 	const [imagePreview, setImagePreview] = useState<string | null>(null);
 	const [imageFile, setImageFile] = useState<File | null>(null);
-	const [globalError, setGlobalError] = useState<string | null>(null);
 
 	const {
 		register,
@@ -40,7 +40,7 @@ export function SignupForm() {
 				avatarUrl = await uploadAvatar(imageFile);
 			}
 
-			const { data, error: authError } = await authClient.signUp.email({
+			const { data, error } = await authClient.signUp.email({
 				email: formData.email,
 				password: formData.password,
 				name: formData.name,
@@ -48,14 +48,16 @@ export function SignupForm() {
 				callbackURL: `${window.location.origin}/ideas`,
 			});
 
-			if (authError) throw new Error(authError.message || "Failed to create account.");
+			if (error) throw new Error();
+
 			return data;
 		},
 		onSuccess: () => {
+			toast.success("Ta-da! It worked.");
 			router.push("/verify-email?status=pending");
 		},
-		onError: (error: any) => {
-			setGlobalError(error.message || "An unexpected error occurred.");
+		onError: () => {
+			toast.error("That was embarrassing. Try again?");
 		},
 	});
 
@@ -63,29 +65,20 @@ export function SignupForm() {
 		const file = e.target.files?.[0];
 		if (file) {
 			if (file.size > 2 * 1024 * 1024) {
-				setGlobalError("Image must be less than 2MB.");
+				toast.error("That image is a heavy lifter. Keep it under 2MB!");
 				return;
 			}
 			setImageFile(file);
 			setImagePreview(URL.createObjectURL(file));
-			setGlobalError(null);
 		}
 	};
 
 	const onSubmit = (data: any) => {
-		setGlobalError(null);
 		signupMutation.mutate(data);
 	};
 
 	return (
 		<div className="w-full">
-			{globalError && (
-				<div className="mb-4 -mt-2 flex items-center gap-2 rounded-md bg-destructive/10 p-3 text-sm font-medium text-destructive">
-					<TbAlertCircle className="size-4 shrink-0" />
-					<p>{globalError}</p>
-				</div>
-			)}
-
 			<form
 				onSubmit={handleSubmit(onSubmit)}
 				className="flex flex-col gap-2"

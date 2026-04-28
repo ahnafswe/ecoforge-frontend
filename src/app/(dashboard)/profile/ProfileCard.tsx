@@ -8,8 +8,10 @@ import { Input } from "@/components/ui/input";
 import { TbEdit, TbCheck, TbX, TbCamera, TbLoader2 } from "react-icons/tb";
 import { uploadAvatar } from "@/services/media";
 import { authClient } from "@/lib/authClient";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "sonner";
 
-interface ProfileCardValues {
+interface ProfileFormValues {
 	name: string;
 }
 
@@ -34,9 +36,39 @@ export function ProfileCard({
 		register,
 		handleSubmit,
 		formState: { isSubmitting },
-	} = useForm<ProfileCardValues>({
+	} = useForm<ProfileFormValues>({
 		defaultValues: {
 			name: user.name || "",
+		},
+	});
+
+	const updateProfileMutation = useMutation({
+		mutationFn: async (data: ProfileFormValues) => {
+			let avatarUrl: string | undefined = undefined;
+
+			if (imageFile) {
+				avatarUrl = await uploadAvatar(imageFile);
+			}
+
+			const { data: updatedUser, error } = await authClient.updateUser({
+				name: data.name,
+				image: avatarUrl ? avatarUrl : user.image,
+			});
+
+			if (error) {
+				throw new Error();
+			}
+
+			return updatedUser;
+		},
+		onSuccess: () => {
+			setIsEditing(false);
+			setImageFile(null);
+			toast.success("Ta-da! It worked.");
+			router.refresh();
+		},
+		onError: () => {
+			toast.error("That was embarrassing. Try again?");
 		},
 	});
 
@@ -44,7 +76,7 @@ export function ProfileCard({
 		const file = e.target.files?.[0];
 		if (file) {
 			if (file.size > 2 * 1024 * 1024) {
-				alert("Image size must be less than 2MB");
+				toast.error("That image is a heavy lifter. Keep it under 2MB!");
 				return;
 			}
 			setImageFile(file);
@@ -58,26 +90,8 @@ export function ProfileCard({
 		}
 	};
 
-	const onSubmit = async (data: ProfileCardValues) => {
-		try {
-			let avatarUrl: string | undefined = undefined;
-
-			if (imageFile) {
-				avatarUrl = await uploadAvatar(imageFile);
-			}
-
-			const {} = await authClient.updateUser({
-				name: data.name,
-				image: avatarUrl ? avatarUrl : user.image,
-			});
-
-			setIsEditing(false);
-			setImageFile(null);
-
-			router.refresh();
-		} catch (error) {
-			console.error("Failed to update profile", error);
-		}
+	const onSubmit = (data: ProfileFormValues) => {
+		updateProfileMutation.mutate(data);
 	};
 
 	const cancelEdit = () => {
@@ -85,8 +99,6 @@ export function ProfileCard({
 		setImagePreview(null);
 		setImageFile(null);
 	};
-
-	const currentAvatar = imagePreview || user.image;
 
 	return (
 		<form
@@ -108,9 +120,9 @@ export function ProfileCard({
 						isEditing ? "cursor-pointer group ring-2 ring-primary/50" : ""
 					}`}
 				>
-					{currentAvatar ? (
+					{imagePreview || user.image ? (
 						<img
-							src={currentAvatar}
+							src={imagePreview || user.image}
 							alt={user.name}
 							className="size-full object-cover"
 						/>

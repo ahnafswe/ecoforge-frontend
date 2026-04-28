@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import QueryProvider from "@/providers/QueryProvider";
+import { Toaster } from "sonner";
 
 const jakarta = Plus_Jakarta_Sans({
 	subsets: ["latin"],
@@ -26,6 +27,13 @@ export default function AppLayout({
 			className={cn(jakarta.variable, "font-sans antialiased")}
 		>
 			<body className="flex min-h-screen flex-col bg-background text-foreground">
+				<Toaster
+					position="top-right"
+					theme="dark"
+					richColors
+					closeButton
+					duration={3500}
+				/>
 				<QueryProvider>{children}</QueryProvider>
 			</body>
 		</html>

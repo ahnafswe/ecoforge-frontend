@@ -7,11 +7,10 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/authClient";
-import { TbAlertCircle } from "react-icons/tb";
+import { toast } from "sonner";
 
 export function LoginForm() {
 	const router = useRouter();
-	const [globalError, setGlobalError] = useState<string | null>(null);
 
 	const {
 		register,
@@ -26,41 +25,34 @@ export function LoginForm() {
 
 	const loginMutation = useMutation({
 		mutationFn: async (formData: any) => {
-			const { data, error: authError } = await authClient.signIn.email({
+			const { data, error } = await authClient.signIn.email({
 				email: formData.email,
 				password: formData.password,
 				callbackURL: `${window.location.origin}/ideas`,
 			});
 
-			if (authError) {
-				throw new Error(authError.message || "Invalid email or password.");
+			if (error) {
+				throw new Error();
 			}
 
 			return data;
 		},
 		onSuccess: () => {
+			toast.success("Ta-da! It worked.");
 			router.push("/ideas");
 			router.refresh();
 		},
-		onError: (error: any) => {
-			setGlobalError(error.message || "An unexpected error occurred.");
+		onError: () => {
+			toast.error("That was embarrassing. Try again?");
 		},
 	});
 
 	const onSubmit = (data: any) => {
-		setGlobalError(null);
 		loginMutation.mutate(data);
 	};
 
 	return (
 		<div className="w-full">
-			{globalError && (
-				<div className="mb-4 -mt-2 flex items-center gap-2 rounded-md bg-destructive/10 p-3 text-sm font-medium text-destructive">
-					<TbAlertCircle className="size-4 shrink-0" />
-					<p>{globalError}</p>
-				</div>
-			)}
-
 			<form
 				onSubmit={handleSubmit(onSubmit)}
 				className="flex flex-col gap-2"
