@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { getServerSession } from "@/lib/session";
 import { Button } from "@/components/ui/button";
 import { MyIdeasContentWrapper } from "./MyIdeasContentWrapper";
+import { IdeaFormDialog } from "./IdeaFormDialog";
 
 export default async function MyIdeasPage() {
 	const sessionData = await getServerSession();
@@ -14,7 +15,7 @@ export default async function MyIdeasPage() {
 		<div className="space-y-8">
 			<div className="flex items-center justify-between gap-4">
 				<h1 className="text-3xl font-bold tracking-tight">My Ideas</h1>
-				<Button className="font-bold">Post Idea</Button>
+				<IdeaFormDialog />
 			</div>
 
 			<MyIdeasContentWrapper />

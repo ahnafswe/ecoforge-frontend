@@ -1,5 +1,17 @@
 import { apiClient } from "@/lib/apiClient";
 
+export interface CreateIdeaPayload {
+	categoryId: string;
+	title: string;
+	problem: string;
+	solution: string;
+	description: string;
+	thumbnail?: string;
+	status?: "DRAFT" | "PENDING";
+	isPaid: boolean;
+	price?: number;
+}
+
 export interface Idea {
 	id: string;
 	authorId: string;
@@ -60,6 +72,14 @@ export interface GetIdeasFilters {
 	sortBy?: "recent" | "top_voted" | "most_commented";
 	minVotes?: number;
 }
+
+export const createIdea = async (
+	payload: CreateIdeaPayload,
+): Promise<Omit<Idea, "_count" | "userVote" | "author" | "category" | "payments">> => {
+	const { data } = await apiClient.post("/ideas", payload);
+
+	return data.data;
+};
 
 export const getIdeas = async (filters: GetIdeasFilters): Promise<Idea[]> => {
 	const { data } = await apiClient.get("/ideas", { params: filters });

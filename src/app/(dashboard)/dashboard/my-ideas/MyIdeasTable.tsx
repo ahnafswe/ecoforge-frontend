@@ -144,16 +144,10 @@ export function MyIdeasTable({ ideas }: { ideas: Idea[] }) {
 												)}
 
 											{idea.status !== "APPROVED" && (
-												<>
-													<DropdownMenuItem className="hover:bg-zinc-900 cursor-pointer">
-														<TbEdit className="mr-2 size-4" />
-														Edit
-													</DropdownMenuItem>
-													<DropdownMenuItem className="hover:bg-destructive/10 cursor-pointer text-destructive">
-														<TbTrash className="mr-2 size-4" />
-														Delete
-													</DropdownMenuItem>
-												</>
+												<DropdownMenuItem className="hover:bg-destructive/10 cursor-pointer text-destructive">
+													<TbTrash className="mr-2 size-4" />
+													Delete
+												</DropdownMenuItem>
 											)}
 										</DropdownMenuContent>
 									</DropdownMenuPositioner>

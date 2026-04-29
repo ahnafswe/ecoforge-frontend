@@ -26,7 +26,7 @@ export default function AppLayout({
 			lang="en"
 			className={cn(jakarta.variable, "font-sans antialiased")}
 		>
-			<body className="flex min-h-screen flex-col bg-background text-foreground">
+			<body className="flex min-h-screen flex-col bg-background text-foreground scheme-only-dark">
 				<Toaster
 					position="top-right"
 					theme="dark"
