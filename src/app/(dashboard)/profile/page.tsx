@@ -1,11 +1,8 @@
 import { getServerSession } from "@/lib/session";
-import { redirect } from "next/navigation";
 import { ProfileCard } from "./ProfileCard";
 
 export default async function ProfilePage() {
 	const sessionData = await getServerSession();
-
-	if (!sessionData?.user) redirect("/login");
 
 	return (
 		<div className="space-y-8">

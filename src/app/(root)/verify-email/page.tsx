@@ -14,7 +14,7 @@ export default function VerifyEmailPage() {
 				<Suspense
 					fallback={
 						<div className="flex flex-col items-center justify-center space-y-4 py-10">
-							<div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+							<div className="size-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
 							<p className="text-sm font-medium text-foreground/60">Loading...</p>
 						</div>
 					}

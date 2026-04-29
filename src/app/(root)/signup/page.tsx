@@ -1,13 +1,21 @@
 import { SignupForm } from "@/components/auth/SignupForm";
 import Link from "next/link";
 import { Metadata } from "next";
+import { getServerSession } from "@/lib/session";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
 	title: "Sign Up | EcoForge",
 	description: "Create your EcoForge account to forge environmental solutions.",
 };
 
-export default function SignupPage() {
+export default async function SignupPage() {
+	const sessionData = await getServerSession();
+
+	if (sessionData?.user) {
+		redirect("/profile");
+	}
+
 	return (
 		<div className="flex items-center justify-center max-lg:px-4 py-12 md:py-20 lg:py-24">
 			<div className="w-full max-w-md rounded-2xl border border-foreground/10 bg-zinc-900/50 p-6">

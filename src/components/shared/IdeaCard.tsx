@@ -55,13 +55,13 @@ export function IdeaCard({ idea }: { idea: Idea }) {
 					{idea.category.name}
 				</p>
 
-				<h3 className="mt-2 text-[17px] font-semibold tracking-tight line-clamp-2">
-					{idea.title}
-				</h3>
+				<h3 className="mt-2 text-[17px] font-semibold line-clamp-2">{idea.title}</h3>
 
-				<p className="mt-1 text-sm text-foreground/70 line-clamp-4 flex-1">
+				<p className="mt-1 text-sm text-foreground/70 line-clamp-4">
 					{idea.description}
 				</p>
+
+				<div className="flex-1" />
 
 				<div className="mt-4 flex items-center justify-between border-t border-white/10 pt-2">
 					<div className="flex items-center gap-3 text-sm font-medium text-foreground/80">

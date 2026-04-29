@@ -39,8 +39,7 @@ export function LoginForm() {
 		},
 		onSuccess: () => {
 			toast.success("Ta-da! It worked.");
-			router.push("/ideas");
-			router.refresh();
+			router.replace("/ideas");
 		},
 		onError: () => {
 			toast.error("That was embarrassing. Try again?");

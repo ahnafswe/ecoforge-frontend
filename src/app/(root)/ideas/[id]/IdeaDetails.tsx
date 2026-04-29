@@ -1,6 +1,5 @@
 "use client";
 
-import { AuthGuard } from "@/components/shared/AuthGuard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/authClient";
@@ -48,6 +47,7 @@ export function IdeaDetails({ id }: { id: string }) {
 		mutationFn: addComment,
 		onSuccess: () => {
 			reset();
+			queryClient.invalidateQueries({ queryKey: ["idea", id] });
 			queryClient.invalidateQueries({ queryKey: ["comment", id] });
 		},
 	});
@@ -128,9 +128,7 @@ export function IdeaDetails({ id }: { id: string }) {
 						</span>
 					</div>
 
-					<h1 className="text-2xl font-extrabold tracking-tight md:text-3xl">
-						{idea.title}
-					</h1>
+					<h1 className="text-2xl font-extrabold md:text-3xl">{idea.title}</h1>
 
 					<div className="flex items-center gap-3">
 						{idea.author.image ? (

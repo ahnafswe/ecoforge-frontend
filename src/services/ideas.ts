@@ -63,6 +63,13 @@ export interface GetIdeasFilters {
 
 export const getIdeas = async (filters: GetIdeasFilters): Promise<Idea[]> => {
 	const { data } = await apiClient.get("/ideas", { params: filters });
+
+	return data.data;
+};
+
+export const getMyIdeas = async (): Promise<Idea[]> => {
+	const { data } = await apiClient.get("/ideas/my");
+
 	return data.data;
 };
 

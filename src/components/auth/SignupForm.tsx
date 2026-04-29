@@ -54,7 +54,7 @@ export function SignupForm() {
 		},
 		onSuccess: () => {
 			toast.success("Ta-da! It worked.");
-			router.push("/verify-email?status=pending");
+			router.replace("/verify-email?status=pending");
 		},
 		onError: () => {
 			toast.error("That was embarrassing. Try again?");
