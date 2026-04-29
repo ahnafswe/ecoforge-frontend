@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { getServerSession } from "@/lib/session";
-import { MyIdeasTable } from "./MyIdeasTable";
+import { Button } from "@/components/ui/button";
+import { MyIdeasContentWrapper } from "./MyIdeasContentWrapper";
 
 export default async function MyIdeasPage() {
 	const sessionData = await getServerSession();
@@ -11,16 +12,12 @@ export default async function MyIdeasPage() {
 
 	return (
 		<div className="space-y-8">
-			<div>
-				<h1 className="text-3xl font-bold tracking-tight leading-none">My Ideas</h1>
-				<p className="text-zinc-400 mt-2">
-					Manage your submitted ideas and check their approval status.
-				</p>
+			<div className="flex items-center justify-between gap-4">
+				<h1 className="text-3xl font-bold tracking-tight">My Ideas</h1>
+				<Button className="font-bold">Post Idea</Button>
 			</div>
 
-			<div className="bg-zinc-900/25 border border-zinc-800/75 rounded-2xl p-2">
-				<MyIdeasTable />
-			</div>
+			<MyIdeasContentWrapper />
 		</div>
 	);
 }

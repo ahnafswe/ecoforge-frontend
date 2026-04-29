@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import {
 	TbDotsVertical,
@@ -10,9 +9,7 @@ import {
 	TbEdit,
 	TbTrash,
 	TbPhotoOff,
-	TbLoader2,
 } from "react-icons/tb";
-import { Button } from "@/components/ui/button";
 import {
 	Table,
 	TableBody,
@@ -35,47 +32,22 @@ import {
 	DialogTitle,
 	DialogDescription,
 } from "@/components/ui/dialog";
-import { getMyIdeas, Idea } from "@/services/ideas";
+import { Idea } from "@/services/ideas";
 
-export function MyIdeasTable() {
+export function MyIdeasTable({ ideas }: { ideas: Idea[] }) {
 	const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
 	const [selectedFeedback, setSelectedFeedback] = useState<string | null>(null);
-
-	const {
-		data: ideas,
-		isLoading,
-		isError,
-	} = useQuery({
-		queryKey: ["my-ideas"],
-		queryFn: getMyIdeas,
-	});
 
 	const openFeedbackModal = (feedback: string) => {
 		setSelectedFeedback(feedback);
 		setIsFeedbackModalOpen(true);
 	};
 
-	if (isLoading) {
-		return (
-			<div className="flex h-64 w-full items-center justify-center">
-				<TbLoader2 className="size-10 animate-spin text-primary" />
-			</div>
-		);
-	}
-
-	if (isError || !ideas?.length) {
-		return (
-			<div className="flex h-64 w-full items-center justify-center text-zinc-500">
-				<p>No ideas found. Start forging!</p>
-			</div>
-		);
-	}
-
 	return (
 		<>
 			<Table>
 				<TableHeader>
-					<TableRow className="border-zinc-800 hover:bg-transparent">
+					<TableRow className="bg-zinc-900/50 border-zinc-800 hover:bg-transparent">
 						<TableHead className="w-100">Idea</TableHead>
 						<TableHead>Category</TableHead>
 						<TableHead>Price</TableHead>
@@ -84,7 +56,7 @@ export function MyIdeasTable() {
 					</TableRow>
 				</TableHeader>
 				<TableBody>
-					{ideas.map((idea: Idea) => (
+					{ideas.map((idea) => (
 						<TableRow key={idea.id}>
 							<TableCell className="font-medium">
 								<div className="flex items-center gap-3">
