@@ -76,7 +76,10 @@ export interface GetIdeasFilters {
 export const createIdea = async (
 	payload: CreateIdeaPayload,
 ): Promise<Omit<Idea, "_count" | "userVote" | "author" | "category" | "payments">> => {
-	const { data } = await apiClient.post("/ideas", payload);
+	const { data } = await apiClient.post("/ideas", {
+		...payload,
+		status: "PENDING",
+	});
 
 	return data.data;
 };
@@ -101,6 +104,12 @@ export const getTrendingIdeas = async (): Promise<Idea[]> => {
 
 export const getIdeaById = async (id: string): Promise<Idea> => {
 	const { data } = await apiClient.get(`/ideas/${id}`);
+
+	return data.data;
+};
+
+export const deleteIdea = async (id: string): Promise<Idea> => {
+	const { data } = await apiClient.delete(`/ideas/${id}`);
 
 	return data.data;
 };

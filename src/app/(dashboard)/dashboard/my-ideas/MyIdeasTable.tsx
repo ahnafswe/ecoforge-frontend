@@ -32,9 +32,13 @@ import {
 	DialogTitle,
 	DialogDescription,
 } from "@/components/ui/dialog";
-import { Idea } from "@/services/ideas";
+import { deleteIdea, Idea } from "@/services/ideas";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 export function MyIdeasTable({ ideas }: { ideas: Idea[] }) {
+	const queryClient = useQueryClient();
+
 	const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
 	const [selectedFeedback, setSelectedFeedback] = useState<string | null>(null);
 
@@ -42,6 +46,17 @@ export function MyIdeasTable({ ideas }: { ideas: Idea[] }) {
 		setSelectedFeedback(feedback);
 		setIsFeedbackModalOpen(true);
 	};
+
+	const deleteMutation = useMutation({
+		mutationFn: (id: string) => deleteIdea(id),
+		onSuccess: () => {
+			toast.success("Ta-da! It worked.");
+			queryClient.invalidateQueries({ queryKey: ["my-ideas"] });
+		},
+		onError: () => {
+			toast.error("That was embarrassing. Try again?");
+		},
+	});
 
 	return (
 		<>
@@ -144,8 +159,13 @@ export function MyIdeasTable({ ideas }: { ideas: Idea[] }) {
 												)}
 
 											{idea.status !== "APPROVED" && (
-												<DropdownMenuItem className="hover:bg-destructive/10 cursor-pointer text-destructive">
-													<TbTrash className="mr-2 size-4" />
+												<DropdownMenuItem
+													onClick={() =>
+														deleteMutation.mutate(idea.id)
+													}
+													className="hover:bg-destructive/10 cursor-pointer text-destructive"
+												>
+													<TbTrash className="mr-2 size-4 text-destructive" />
 													Delete
 												</DropdownMenuItem>
 											)}
