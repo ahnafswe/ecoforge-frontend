@@ -19,7 +19,7 @@ export function Sidebar({ role }: { role: string }) {
 	}
 
 	if (role === "ADMIN") {
-		sidebarLinks.push({ label: "Manage Users", path: "/dashboard/users" });
+		sidebarLinks.push({ label: "Manage Members", path: "/dashboard/members" });
 		sidebarLinks.push({ label: "Manage Ideas", path: "/dashboard/ideas" });
 	}
 

@@ -1,6 +1,5 @@
 import { redirect } from "next/navigation";
 import { getServerSession } from "@/lib/session";
-import { Button } from "@/components/ui/button";
 import { MyIdeasContentWrapper } from "./MyIdeasContentWrapper";
 import { IdeaFormDialog } from "./IdeaFormDialog";
 

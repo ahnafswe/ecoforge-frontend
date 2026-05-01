@@ -2,14 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import {
-	TbDotsVertical,
-	TbEye,
-	TbMessageReport,
-	TbEdit,
-	TbTrash,
-	TbPhotoOff,
-} from "react-icons/tb";
+import { TbDotsVertical, TbEye, TbMessageReport, TbTrash, TbPhotoOff } from "react-icons/tb";
 import {
 	Table,
 	TableBody,
@@ -111,7 +104,7 @@ export function MyIdeasTable({ ideas }: { ideas: Idea[] }) {
 
 							<TableCell>
 								<span
-									className={`px-2 py-1 rounded-sm text-xs font-medium border ${
+									className={`px-2 py-1 rounded-sm text-[13px] font-medium border ${
 										idea.status === "APPROVED"
 											? "bg-lime-500/10 text-lime-400 border-lime-500/20"
 											: idea.status === "REJECTED"
@@ -137,7 +130,7 @@ export function MyIdeasTable({ ideas }: { ideas: Idea[] }) {
 														href={`/ideas/${idea.id}`}
 														className="flex items-center"
 													>
-														<TbEye className="mr-2 size-4" />
+														<TbEye className="mr-1 size-4" />
 														View Details
 													</Link>
 												</DropdownMenuItem>
@@ -153,7 +146,7 @@ export function MyIdeasTable({ ideas }: { ideas: Idea[] }) {
 														}
 														className="hover:bg-zinc-900 cursor-pointer"
 													>
-														<TbMessageReport className="mr-2 size-4" />
+														<TbMessageReport className="mr-1 size-4" />
 														View Feedback
 													</DropdownMenuItem>
 												)}
@@ -165,7 +158,7 @@ export function MyIdeasTable({ ideas }: { ideas: Idea[] }) {
 													}
 													className="hover:bg-destructive/10 cursor-pointer text-destructive"
 												>
-													<TbTrash className="mr-2 size-4 text-destructive" />
+													<TbTrash className="mr-1 size-4 text-destructive" />
 													Delete
 												</DropdownMenuItem>
 											)}
