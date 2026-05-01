@@ -84,7 +84,7 @@ export const createIdea = async (
 	return data.data;
 };
 
-export const getIdeas = async (filters: GetIdeasFilters): Promise<Idea[]> => {
+export const getIdeas = async (filters?: GetIdeasFilters): Promise<Idea[]> => {
 	const { data } = await apiClient.get("/ideas", { params: filters });
 
 	return data.data;
