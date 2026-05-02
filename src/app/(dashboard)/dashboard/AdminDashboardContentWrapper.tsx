@@ -108,7 +108,17 @@ export function AdminDashboardContentWrapper() {
 						Ideas over the last 7 days
 					</h3>
 
-					<AdminDashboardIdeasTrend ideas={ideasTrend!} />
+					{!ideasTrend?.length ? (
+						<div className="-mt-6 flex h-48 flex-col items-center justify-center text-center px-4">
+							<h4 className="text-xl font-semibold mb-2">Velocity flatlined</h4>
+							<p className="text-zinc-400 max-w-md">
+								Your users are hibernating. Go poke them with a stick to wake up
+								the beautiful charts.
+							</p>
+						</div>
+					) : (
+						<AdminDashboardIdeasTrend ideas={ideasTrend!} />
+					)}
 				</div>
 
 				<div className="w-1/3 bg-zinc-900/25 border border-zinc-800/75 rounded-2xl p-5">
@@ -116,7 +126,17 @@ export function AdminDashboardContentWrapper() {
 						Ideas by Category
 					</h3>
 
-					<AdminDashboardIdeasByCategory ideas={ideasByCategory!} />
+					{!ideasByCategory?.length ? (
+						<div className="-mt-6 flex h-48 flex-col items-center justify-center text-center px-4">
+							<h4 className="text-xl font-semibold mb-2">The uncharted void</h4>
+							<p className="text-sm text-zinc-400 max-w-sm">
+								Everything is currently filed under "Nothing". Create some
+								categories before total chaos ensues.
+							</p>
+						</div>
+					) : (
+						<AdminDashboardIdeasByCategory ideas={ideasByCategory!} />
+					)}
 				</div>
 			</div>
 
@@ -125,14 +145,27 @@ export function AdminDashboardContentWrapper() {
 					Recent Pending Ideas
 				</h3>
 
-				<div className="mb-4 flex items-center justify-between">
-					<p className="text-sm font-medium text-zinc-400">
-						Showing <span className="text-zinc-200">{pendingIdeas.length}</span>{" "}
-						<span className="text-yellow-400/80">pending</span> ideas
-					</p>
-				</div>
-
-				<IdeasTable ideas={pendingIdeas} />
+				{!pendingIdeas?.length ? (
+					<div className="-mt-6 flex h-48 flex-col items-center justify-center text-center px-4">
+						<h4 className="text-xl font-semibold mb-2">No ideas left to review</h4>
+						<p className="text-zinc-400 max-w-md">
+							You've either done your job perfectly, or everyone else forgot they
+							had one. Enjoy the silence while it lasts.
+						</p>
+					</div>
+				) : (
+					<>
+						{" "}
+						<div className="mb-4 flex items-center justify-between">
+							<p className="text-sm font-medium text-zinc-400">
+								Showing{" "}
+								<span className="text-zinc-200">{pendingIdeas.length}</span>{" "}
+								<span className="text-yellow-400/80">pending</span> ideas
+							</p>
+						</div>
+						<IdeasTable ideas={pendingIdeas} />
+					</>
+				)}
 			</div>
 		</div>
 	);

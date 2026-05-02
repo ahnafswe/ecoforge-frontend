@@ -56,7 +56,17 @@ export function MemberDashboardContentWrapper() {
 					</p>
 				</div>
 
-				<MemberDashboardTopIdeas ideas={topIdeas} />
+				{!topIdeas?.length ? (
+					<div className="-mt-6 flex h-48 flex-col items-center justify-center text-center px-4">
+						<h4 className="text-xl font-semibold mb-2">The hall is echoing</h4>
+						<p className="text-zinc-400 max-w-md">
+							It's completely empty in here. Forge an idea, survive the review
+							process, and claim your spot before the cobwebs take over.
+						</p>
+					</div>
+				) : (
+					<MemberDashboardTopIdeas ideas={topIdeas} />
+				)}
 			</div>
 		</>
 	);
