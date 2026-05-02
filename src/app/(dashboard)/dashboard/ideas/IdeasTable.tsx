@@ -37,7 +37,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Idea } from "@/services/ideas";
 
-export function PendingIdeasTable({ ideas }: { ideas: Idea[] }) {
+export function IdeasTable({ ideas }: { ideas: Idea[] }) {
 	const queryClient = useQueryClient();
 
 	return (
@@ -47,6 +47,7 @@ export function PendingIdeasTable({ ideas }: { ideas: Idea[] }) {
 					<TableRow className="bg-zinc-900/50 border-zinc-800 hover:bg-transparent">
 						<TableHead className="w-100">Idea</TableHead>
 						<TableHead>Category</TableHead>
+						<TableHead className="w-100">Author</TableHead>
 						<TableHead>Price</TableHead>
 						<TableHead className="w-12 text-right"></TableHead>
 					</TableRow>
@@ -80,13 +81,35 @@ export function PendingIdeasTable({ ideas }: { ideas: Idea[] }) {
 								{idea.category.name}
 							</TableCell>
 
+							<TableCell className="font-medium">
+								<div className="flex items-center gap-3">
+									{idea.author.image ? (
+										<img
+											src={idea.author.image}
+											alt={idea.author.name}
+											className="size-10 rounded-sm object-cover"
+										/>
+									) : (
+										<div className="size-10 flex items-center justify-center rounded-sm bg-zinc-800/75">
+											<TbUser className="size-5 text-zinc-500" />
+										</div>
+									)}
+									<span
+										className="truncate max-w-75"
+										title={idea.author.name}
+									>
+										{idea.author.name}
+									</span>
+								</div>
+							</TableCell>
+
 							<TableCell>
 								{idea.isPaid ? (
 									<span className="font-medium text-yellow-500">
 										${idea.price}
 									</span>
 								) : (
-									<span className="font-medium text-primary">Free</span>
+									<span className="font-medium text-zinc-300">Free</span>
 								)}
 							</TableCell>
 

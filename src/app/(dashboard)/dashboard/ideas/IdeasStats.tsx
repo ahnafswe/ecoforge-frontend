@@ -1,6 +1,6 @@
 "use client";
 
-export function MyIdeasStats({
+export function IdeasStats({
 	totalIdeasCount,
 	pendingIdeasCount,
 	approvedIdeasCount,

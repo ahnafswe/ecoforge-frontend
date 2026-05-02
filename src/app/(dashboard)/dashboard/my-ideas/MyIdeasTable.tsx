@@ -98,7 +98,7 @@ export function MyIdeasTable({ ideas }: { ideas: Idea[] }) {
 										${idea.price}
 									</span>
 								) : (
-									<span className="font-medium text-primary">Free</span>
+									<span className="font-medium text-zinc-300">Free</span>
 								)}
 							</TableCell>
 

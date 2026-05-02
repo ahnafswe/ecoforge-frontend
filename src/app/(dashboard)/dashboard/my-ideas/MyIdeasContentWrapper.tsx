@@ -3,8 +3,8 @@
 import { getMyIdeas } from "@/services/ideas";
 import { useQuery } from "@tanstack/react-query";
 import { TbLoader2 } from "react-icons/tb";
-import { MyIdeasStats } from "./MyIdeasStats";
 import { MyIdeasTable } from "./MyIdeasTable";
+import { IdeasStats } from "../ideas/IdeasStats";
 
 export function MyIdeasContentWrapper() {
 	const {
@@ -52,7 +52,7 @@ export function MyIdeasContentWrapper() {
 
 	return (
 		<>
-			<MyIdeasStats
+			<IdeasStats
 				totalIdeasCount={ideas.length}
 				pendingIdeasCount={pendingIdeasCount}
 				approvedIdeasCount={approvedIdeasCount}
