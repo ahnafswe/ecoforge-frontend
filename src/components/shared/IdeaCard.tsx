@@ -36,22 +36,24 @@ export function IdeaCard({ idea }: { idea: Idea }) {
 			</div>
 
 			<div className="flex flex-1 flex-col p-4">
-				<div className="flex items-center gap-2">
-					{idea.author.image ? (
-						<img
-							src={idea.author.image}
-							alt={idea.author.name}
-							className="size-7 rounded-full object-cover"
-						/>
-					) : (
-						<div className="size-7 rounded-full bg-zinc-900" />
-					)}
-					<span className="text-sm font-medium text-foreground/90">
-						{idea.author.name}
-					</span>
-				</div>
+				{idea.author && (
+					<div className="flex items-center gap-2 mb-3">
+						{idea.author.image ? (
+							<img
+								src={idea.author.image}
+								alt={idea.author.name}
+								className="size-7 rounded-full object-cover"
+							/>
+						) : (
+							<div className="size-7 rounded-full bg-zinc-900" />
+						)}
+						<span className="text-sm font-medium text-foreground/90">
+							{idea.author.name}
+						</span>
+					</div>
+				)}
 
-				<p className="mt-3 w-fit rounded-full bg-zinc-800/60 px-3 py-1 text-[13px] font-semibold text-foreground/80">
+				<p className="w-fit rounded-full bg-zinc-800/60 px-3 py-1 text-[13px] font-semibold text-foreground/80">
 					{idea.category.name}
 				</p>
 
