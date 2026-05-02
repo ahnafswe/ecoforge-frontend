@@ -73,6 +73,17 @@ export interface GetIdeasFilters {
 	minVotes?: number;
 }
 
+export interface IdeasTrendData {
+	label: string;
+	date: string;
+	Ideas: number;
+}
+
+export interface IdeasByCategoryData {
+	name: string;
+	value: number;
+}
+
 export const createIdea = async (
 	payload: CreateIdeaPayload,
 ): Promise<Omit<Idea, "_count" | "userVote" | "author" | "category" | "payments">> => {
@@ -102,10 +113,22 @@ export const getTrendingIdeas = async (): Promise<Idea[]> => {
 	return data.data;
 };
 
+export const getIdeasTrend = async (): Promise<IdeasTrendData[]> => {
+	const { data } = await apiClient.get("/ideas/trend");
+
+	return data.data;
+};
+
 export const getIdeaById = async (id: string): Promise<Idea> => {
 	const { data } = await apiClient.get(`/ideas/${id}`);
 
 	return data.data;
+};
+
+export const getIdeasByCategory = async (): Promise<IdeasByCategoryData[]> => {
+	const { data } = await apiClient.get("/categories");
+
+	return data.data.chartData;
 };
 
 export const deleteIdea = async (id: string): Promise<Idea> => {
