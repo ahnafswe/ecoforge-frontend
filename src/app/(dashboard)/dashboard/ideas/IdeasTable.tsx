@@ -1,15 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import {
-	TbCancel,
-	TbDotsVertical,
-	TbMessageReport,
-	TbPhotoOff,
-	TbRestore,
-	TbUser,
-	TbUserUp,
-} from "react-icons/tb";
+import { TbPhotoOff, TbUser } from "react-icons/tb";
 import {
 	Table,
 	TableBody,
@@ -18,28 +9,9 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuTrigger,
-	DropdownMenuPositioner,
-} from "@/components/ui/dropdown-menu";
-import {
-	Dialog,
-	DialogContent,
-	DialogHeader,
-	DialogTitle,
-	DialogDescription,
-} from "@/components/ui/dialog";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
 import { Idea } from "@/services/ideas";
 
 export function IdeasTable({ ideas }: { ideas: Idea[] }) {
-	const queryClient = useQueryClient();
-
 	return (
 		<>
 			<Table>
@@ -49,7 +21,6 @@ export function IdeasTable({ ideas }: { ideas: Idea[] }) {
 						<TableHead>Category</TableHead>
 						<TableHead className="w-100">Author</TableHead>
 						<TableHead>Price</TableHead>
-						<TableHead className="w-12 text-right"></TableHead>
 					</TableRow>
 				</TableHeader>
 				<TableBody>
@@ -111,28 +82,6 @@ export function IdeasTable({ ideas }: { ideas: Idea[] }) {
 								) : (
 									<span className="font-medium text-zinc-300">Free</span>
 								)}
-							</TableCell>
-
-							<TableCell className="text-right">
-								<DropdownMenu>
-									<DropdownMenuTrigger className="size-8 flex items-center justify-center rounded-sm text-zinc-300 hover:text-foreground hover:bg-zinc-800 transition-colors">
-										<span className="sr-only">Open Menu</span>
-										<TbDotsVertical className="size-5" />
-									</DropdownMenuTrigger>
-									<DropdownMenuPositioner align="end">
-										<DropdownMenuContent className="bg-zinc-950 border-zinc-800">
-											{/* <DropdownMenuItem
-													onClick={() =>
-														deleteMutation.mutate(idea.id)
-													}
-													className="hover:bg-destructive/10 cursor-pointer text-destructive"
-												>
-													<TbTrash className="mr-1 size-4 text-destructive" />
-													Delete
-												</DropdownMenuItem> */}
-										</DropdownMenuContent>
-									</DropdownMenuPositioner>
-								</DropdownMenu>
 							</TableCell>
 						</TableRow>
 					))}

@@ -102,8 +102,8 @@ export function AdminDashboardContentWrapper() {
 				paidIdeasRatio={paidIdeasRatio}
 			/>
 
-			<div className="flex items-start gap-6">
-				<div className="w-2/3 bg-zinc-900/25 border border-zinc-800/75 rounded-2xl p-5">
+			<div className="lg:flex items-start gap-6 space-y-6">
+				<div className="lg:w-2/3 bg-zinc-900/25 border border-zinc-800/75 rounded-2xl p-5">
 					<h3 className="text-xl md:text-2xl font-bold mb-6 text-center">
 						Ideas over the last 7 days
 					</h3>
@@ -121,7 +121,7 @@ export function AdminDashboardContentWrapper() {
 					)}
 				</div>
 
-				<div className="w-1/3 bg-zinc-900/25 border border-zinc-800/75 rounded-2xl p-5">
+				<div className="lg:w-1/3 bg-zinc-900/25 border border-zinc-800/75 rounded-2xl p-5">
 					<h3 className="text-xl md:text-2xl font-bold mb-6 text-center">
 						Ideas by Category
 					</h3>

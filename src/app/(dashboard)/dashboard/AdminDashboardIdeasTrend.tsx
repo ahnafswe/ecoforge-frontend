@@ -13,7 +13,7 @@ import { IdeasTrendData } from "@/services/ideas";
 
 export function AdminDashboardIdeasTrend({ ideas }: { ideas: IdeasTrendData[] }) {
 	return (
-		<div className="h-75 w-full teal-">
+		<div className="h-60 md:h-75 w-full">
 			<ResponsiveContainer
 				width="100%"
 				height="100%"

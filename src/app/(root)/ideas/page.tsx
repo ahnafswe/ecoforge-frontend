@@ -49,7 +49,7 @@ export default function IdeasFeed() {
 	const sliderMaxValue = Math.max(highestVote, 3);
 
 	return (
-		<div className="container mx-auto max-w-7xl max-lg:px-4 pt-8 pb-16">
+		<div className="container mx-auto max-w-7xl px-4 pt-8 pb-16">
 			<div className="mb-6 flex flex-col gap-1">
 				<h1 className="text-3xl font-extrabold tracking-tight md:text-4xl">
 					Discover Ideas

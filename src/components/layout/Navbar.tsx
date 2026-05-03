@@ -21,7 +21,6 @@ const NAV_LINKS = [
 	{ name: "Home", href: "/" },
 	{ name: "Ideas", href: "/ideas" },
 	{ name: "About Us", href: "/about" },
-	{ name: "Blog", href: "/blog" },
 ];
 
 export function Navbar() {
@@ -41,7 +40,7 @@ export function Navbar() {
 
 	return (
 		<header className="sticky top-0 z-50 w-full bg-background/70 border-b border-b-zinc-400/5 backdrop-blur-md">
-			<div className="container mx-auto max-w-7xl flex h-16 items-center justify-between max-md:px-4">
+			<div className="container mx-auto max-w-7xl flex h-16 items-center justify-between px-4">
 				<div className="flex items-center gap-2">
 					<Link
 						href="/"

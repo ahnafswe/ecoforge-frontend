@@ -10,7 +10,7 @@ export function Footer() {
 	return (
 		<footer className="border-t border-foreground/5 bg-zinc-900/50 pt-16 pb-8">
 			<div className="container mx-auto max-w-7xl px-6 lg:px-8">
-				<div className="grid grid-cols-1 gap-12 md:grid-cols-4 lg:gap-8">
+				<div className="grid grid-cols-1 md:grid-cols-4 gap-8">
 					<div className="flex flex-col gap-4 md:col-span-1">
 						<Link
 							href="/"
@@ -102,13 +102,13 @@ export function Footer() {
 						<h4 className="font-bold text-foreground">Legal</h4>
 						<div className="flex flex-col gap-3 text-sm text-foreground/70">
 							<Link
-								href="/privacy"
+								href="/privacy-policy"
 								className="hover:text-primary transition-colors"
 							>
 								Privacy Policy
 							</Link>
 							<Link
-								href="/terms"
+								href="/terms-of-service"
 								className="hover:text-primary transition-colors"
 							>
 								Terms of Service

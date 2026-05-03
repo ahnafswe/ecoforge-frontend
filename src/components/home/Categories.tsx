@@ -15,7 +15,7 @@ export function Categories() {
 	});
 
 	return (
-		<section className="relative pb-16 md:pb-24 lg:pb-40">
+		<section className="relative px-4 pb-16 md:pb-24 lg:pb-40">
 			<div className="container mx-auto max-w-7xl">
 				<div className="flex flex-col gap-16 lg:flex-row lg:items-start lg:gap-12">
 					<div className="lg:sticky lg:top-32 lg:w-1/3">

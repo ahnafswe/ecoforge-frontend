@@ -136,7 +136,7 @@ export function ProfileCard({
 
 					{isEditing && (
 						<div className="absolute inset-0 bg-black/55 flex items-center justify-center group-hover:bg-black/65 transition-colors">
-							<TbCamera className="size-8 text-white/80" />
+							<TbCamera className="size-8/80" />
 						</div>
 					)}
 				</div>

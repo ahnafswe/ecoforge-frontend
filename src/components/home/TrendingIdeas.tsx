@@ -21,7 +21,7 @@ export function TrendingIdeas() {
 	return (
 		<section className="px-4 pb-16 md:pb-24 lg:pb-40">
 			<div className="container mx-auto max-w-7xl">
-				<div className="mb-12 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
+				<div className="mb-6 lg:mb-12 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
 					<div>
 						<div className="mb-3 flex items-center gap-3 text-sm font-bold tracking-widest text-primary">
 							<FiTrendingUp className="size-4" />

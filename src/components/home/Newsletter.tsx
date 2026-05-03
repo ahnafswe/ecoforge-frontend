@@ -11,7 +11,7 @@ export function Newsletter() {
 					Stay in the loop
 				</h2>
 
-				<p className="mt-3 text-foreground/70">
+				<p className="max-lg:text-sm mt-3 text-foreground/70">
 					Get a weekly digest of the trending environmental ideas and exclusive
 					premium ideas delivered straight to your inbox.
 				</p>

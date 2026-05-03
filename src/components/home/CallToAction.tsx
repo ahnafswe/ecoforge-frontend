@@ -8,10 +8,10 @@ export default function CallToAction() {
 			<div className="relative z-10 container mx-auto max-w-5xl overflow-hidden rounded-[2rem] bg-primary px-6 py-20 text-center text-background shadow-2xl md:px-16 md:py-24">
 				<div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/30 blur-[100px]" />
 
-				<h2 className="text-4xl font-extrabold tracking-tight md:text-5xl">
+				<h2 className="text-3xl font-extrabold tracking-tight md:text-5xl">
 					Ready to forge the future?
 				</h2>
-				<p className="mx-auto mt-4 max-w-2xl text-lg text-background/80 md:text-xl">
+				<p className="mx-auto mt-4 max-w-2xl text-background/80 md:text-xl">
 					Join hundreds of innovators, engineers, and environmentalists building the
 					next generation of sustainable technology. Your idea could be the next one
 					we fund.

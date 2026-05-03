@@ -3,7 +3,7 @@ import { Idea } from "@/services/ideas";
 
 export function MemberDashboardTopIdeas({ ideas }: { ideas: Idea[] }) {
 	return (
-		<div className="grid grid-cols-4 gap-4">
+		<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
 			{ideas.map((idea) => (
 				<IdeaCard
 					key={idea.id}
