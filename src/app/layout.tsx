@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import QueryProvider from "@/providers/QueryProvider";
 import { Toaster } from "sonner";
+import { ChatbotWidget } from "@/components/layout/ChatbotWidget";
 
 const jakarta = Plus_Jakarta_Sans({
 	subsets: ["latin"],
@@ -34,7 +35,10 @@ export default function AppLayout({
 					closeButton
 					duration={3500}
 				/>
-				<QueryProvider>{children}</QueryProvider>
+				<QueryProvider>
+					{children}
+					<ChatbotWidget />
+				</QueryProvider>
 			</body>
 		</html>
 	);
