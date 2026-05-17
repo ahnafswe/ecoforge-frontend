@@ -18,7 +18,7 @@ export async function getSessionFromRequest(request: NextRequest): Promise<any> 
 		);
 		if (!hasSessionCookie) return null;
 
-		const response = await fetch(`${FRONTEND_URL}/api/v1/better-auth/get-session`, {
+		const response = await fetch(`/api/v1/better-auth/get-session`, {
 			headers: {
 				cookie: cookieHeader,
 				origin: FRONTEND_URL,
@@ -46,7 +46,7 @@ export async function getCurrentUser(): Promise<any> {
 		const hasSessionCookie = SESSION_COOKIE_NAMES.some((name) => cookie.includes(name));
 		if (!hasSessionCookie) return null;
 
-		const response = await fetch(`${FRONTEND_URL}/api/v1/better-auth/get-session`, {
+		const response = await fetch(`/api/v1/better-auth/get-session`, {
 			headers: {
 				cookie,
 				origin: FRONTEND_URL,
