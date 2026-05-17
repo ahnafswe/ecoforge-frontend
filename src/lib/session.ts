@@ -6,11 +6,11 @@ export const getServerSession = cache(async () => {
 	const cookieStore = await cookies();
 
 	const sessionCookie =
-		cookieStore.get("better-auth.session_token") ||
-		cookieStore.get("__Secure-better-auth.session_token");
+		cookieStore.get("session_token") || cookieStore.get("__Secure-session_token");
 	const sessionToken = sessionCookie?.value;
 
 	console.log("Session Token:", sessionToken);
+
 	if (!sessionToken) return null;
 
 	try {
