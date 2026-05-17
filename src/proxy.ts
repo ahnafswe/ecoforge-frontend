@@ -4,7 +4,7 @@ import { getSessionFromRequest } from "./lib/authSession";
 const baseURL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/v1";
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL!;
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
 	const session = await getSessionFromRequest(request);
 
 	console.log("Session:", session);
