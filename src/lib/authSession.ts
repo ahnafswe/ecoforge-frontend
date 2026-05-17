@@ -11,6 +11,8 @@ export async function getSessionFromRequest(request: NextRequest): Promise<any> 
 	try {
 		const cookieHeader = request.headers.get("cookie") ?? "";
 
+		console.log(cookieHeader);
+
 		const hasSessionCookie = SESSION_COOKIE_NAMES.some((name) =>
 			cookieHeader.includes(name),
 		);
