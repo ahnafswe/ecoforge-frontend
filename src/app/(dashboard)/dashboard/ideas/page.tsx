@@ -5,7 +5,7 @@ import { ManageIdeasContentWrapper } from "./ManageIdeasContentWrapper";
 export default async function ManageIdeasPage() {
 	const sessionData = await getServerSession();
 
-	if (!sessionData?.user) redirect("/login");
+	if (!sessionData) redirect("/login");
 
 	if (sessionData.user.role !== "ADMIN") redirect("/dashboard");
 

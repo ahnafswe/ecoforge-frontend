@@ -6,7 +6,7 @@ import { IdeaFormDialog } from "./IdeaFormDialog";
 export default async function MyIdeasPage() {
 	const sessionData = await getServerSession();
 
-	if (!sessionData?.user) redirect("/login");
+	if (!sessionData) redirect("/login");
 
 	if (sessionData.user.role !== "MEMBER") redirect("/dashboard");
 

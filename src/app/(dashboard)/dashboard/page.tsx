@@ -6,7 +6,7 @@ import { MemberDashboardContentWrapper } from "./MemberDashboardContentWrapper";
 export default async function DashboardPage() {
 	const sessionData = await getServerSession();
 
-	if (!sessionData?.user) redirect("/login");
+	if (!sessionData) redirect("/login");
 
 	return (
 		<div className="space-y-8">

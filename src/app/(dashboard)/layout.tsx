@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
 	const sessionData = await getServerSession();
 
-	if (!sessionData?.user) redirect("/login");
+	if (!sessionData) redirect("/login");
 
 	return (
 		<div className="flex min-h-screen">

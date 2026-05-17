@@ -5,7 +5,7 @@ import { ManageMembersContentWrapper } from "./ManageMembersContentWrapper";
 export default async function ManageMembersPage() {
 	const sessionData = await getServerSession();
 
-	if (!sessionData?.user) redirect("/login");
+	if (!sessionData) redirect("/login");
 
 	if (sessionData.user.role !== "ADMIN") redirect("/dashboard");
 
