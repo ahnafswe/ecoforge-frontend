@@ -9,6 +9,7 @@ export const getServerSession = cache(async () => {
 		cookieStore.get("session_token") || cookieStore.get("__Secure-session_token");
 	const sessionToken = sessionCookie?.value;
 
+	console.log("Session Token:", sessionToken);
 	if (!sessionToken) return null;
 
 	try {

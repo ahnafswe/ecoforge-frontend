@@ -5,6 +5,8 @@ import { redirect } from "next/navigation";
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
 	const sessionData = await getServerSession();
 
+	console.log("Session Data:", sessionData);
+
 	if (!sessionData) redirect("/login");
 
 	return (
