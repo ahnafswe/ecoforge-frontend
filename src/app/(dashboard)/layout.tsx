@@ -1,9 +1,9 @@
 import { Sidebar } from "@/components/layout/Sidebar";
-import { getServerSession } from "@/lib/session";
+import { getCurrentUser } from "@/lib/authSession";
 import { redirect } from "next/navigation";
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
-	const sessionData = await getServerSession();
+	const sessionData = await getCurrentUser();
 
 	console.log("Session Data:", sessionData);
 
