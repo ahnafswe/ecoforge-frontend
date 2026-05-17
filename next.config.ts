@@ -14,7 +14,7 @@ const nextConfig: NextConfig = {
 		return [
 			{
 				source: "/api/v1/:path*",
-				destination: "https://ecoforge-api.onrender.com/api/v1",
+				destination: "https://ecoforge-api.onrender.com/api/v1/:path*",
 			},
 		];
 	},

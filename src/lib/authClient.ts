@@ -1,7 +1,7 @@
 import { createAuthClient } from "better-auth/react";
 
 export const authClient = createAuthClient({
-	baseURL: `${process.env.NEXT_PUBLIC_API_URL}/better-auth`,
+	baseURL: "https://ecoforge-api.onrender.com/api/v1/better-auth",
 	fetchOptions: { credentials: "include" },
 	plugins: [
 		{
