@@ -5,15 +5,16 @@ import { apiClient } from "@/lib/apiClient";
 export const getServerSession = cache(async () => {
 	const cookieStore = await cookies();
 
-	const sessionToken =
-		cookieStore.get("session_token")?.value || cookieStore.get("__Secure-session_token")?.value;
+	const sessionCookie =
+		cookieStore.get("session_token") || cookieStore.get("__Secure-session_token");
+	const sessionToken = sessionCookie?.value;
 
 	if (!sessionToken) return null;
 
 	try {
 		const response = await apiClient.get("/better-auth/get-session", {
 			headers: {
-				Cookie: `session_token=${sessionToken}`,
+				Cookie: `${sessionCookie.name}=${sessionToken}`,
 			},
 		});
 
